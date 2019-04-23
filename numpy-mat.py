@@ -1,4 +1,5 @@
 #矩阵
+from scipy import sparse
 #矩阵建议用array表示
 matrix=np.array([[1,2],
                  [2,1],
