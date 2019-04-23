@@ -1,8 +1,8 @@
 from numpy import *
 import sys
 from datetime import *
-#ÏòÁ¿
-#0-nµÄÕûÊıµÄÆ½·½ºÍÁ¢·½µÄ±í´ï
+#å‘é‡
+#0-nçš„æ•´æ•°çš„å¹³æ–¹å’Œç«‹æ–¹çš„è¡¨è¾¾
 # def pythonsum(n):
 #     a=range(n)
 #     b=range(n)
@@ -29,23 +29,30 @@ from datetime import *
 # print(d[-2:])
 # print("numpysum elapsed time in the microseconds",delta.microseconds)
 
+#è¡Œå‘é‡
+vector_row=np.array([1,2,3])
+#åˆ—å‘é‡
+vector_column=np.array([[1],
+                        [2],
+                        [3]])
+
 a=arange(5)
 print(a.shape)
 b=array([arange(2),arange(2)])
 print(b.shape)
 c=arange(4,7,dtype='f')
 print(c)
-#×Ô¶¨ÒåÊı¾İÀàĞÍ
+#è‡ªå®šä¹‰æ•°æ®ç±»å‹
 t=dtype([('name',str_,40),('numitems',int32),('price',float32)])
 print(t)
 itemz=array([('meaning of life dvd',42,3.14),('buffer',13,2.72)])
 print(itemz[1,1])
 
-#Ò»Î¬Êı×éµÄË÷ÒıÓëÇĞÆ¬
+#ä¸€ç»´æ•°ç»„çš„ç´¢å¼•ä¸åˆ‡ç‰‡
 print(a[:4:2])
 print(a[::-1])
 
-#¶àÎ¬Êı×é
+#å¤šç»´æ•°ç»„
 d=arange(24).reshape(2,3,4)
 print(d)
 print(d[:,0,0])
@@ -53,31 +60,31 @@ print(d[0,:,:],'\n',d[0,...])
 print(d[0,1,::2])
 print(d[0,::-1,-1])
 e=d.ravel()
-print(e) #Õ¹Æ½
-print(d.flatten()) #flattenÇëÇóÄÚ´æÀ´±£´æ½á¹û
+print(e) #å±•å¹³
+print(d.flatten()) #flattenè¯·æ±‚å†…å­˜æ¥ä¿å­˜ç»“æœ
 # d.shape=(6,4)
 # print(d)
-print(d.transpose(),d.T) #×ªÖÃ
+print(d.transpose(),d.T) #è½¬ç½®
 
 f=arange(9).reshape(3,3)
 g=2*f
 print(hstack((f,g)))
 print(vstack((f,g)))
 print(concatenate((f,g),axis=0))
-print(dstack((f,g))) #Éî¶È×éºÏ£¬ÑØ×İÖá
-#column_stack,row_stackÍ¬hstack¡¢vstackÏàÍ¬
+print(dstack((f,g))) #æ·±åº¦ç»„åˆï¼Œæ²¿çºµè½´
+#column_stack,row_stackåŒhstackã€vstackç›¸åŒ
 
 print(hsplit(f,3))
 print(vsplit(f,3))
 print(split(f,3,axis=0))
-print(f.ndim)#Î¬¶È
+print(f.ndim)#ç»´åº¦
 print(f.size)
 print(f.nbytes,f.size*f.itemsize)
 
 h=array([1.j+1,2.j+3])
 print(h.real,h.imag)
 
-#±âÆ½µü´úÆ÷
+#æ‰å¹³è¿­ä»£å™¨
 i=h.flat
 for item in i:
     print(item)
