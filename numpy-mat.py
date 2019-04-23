@@ -1,46 +1,120 @@
-#¾ØÕó
+#çŸ©é˜µ
+#çŸ©é˜µå»ºè®®ç”¨arrayè¡¨ç¤º
+matrix=np.array([[1,2],
+                 [2,1],
+                 [3,1]])
+
+#åˆ›å»ºç¨€ç–çŸ©é˜µ
+matrix_xishu=np.array([[0,0],
+                 [0,1],
+                 [0,3]])
+matrix_sparse=sparse.csr_matrix(matrix_xishu)
+print(matrix_sparse)
+
+#å–å€¼
+print(vector_row[2])
+print(matrix[1,1])
+
+#å¯¹çŸ©é˜µå…ƒç´ è¿›è¡Œæ“ä½œ
+add_100=lambda i:i+100
+#å‘é‡åŒ–æ“ä½œ
+vectorized_add_100=np.vectorize(add_100)
+print(vectorized_add_100(matrix))
+print(matrix+100)
+
+#æœ€å°æœ€å¤§å€¼
+print(np.max(matrix))
+print(np.min(matrix))
+
+#å‡å€¼ã€æ–¹å·®
+print(np.mean(matrix))
+print(np.var(matrix))
+
+#flatten
+print(matrix.flatten())
+
+#çŸ©é˜µçš„ç§©
+print(np.linalg.matrix_rank(matrix))
+
+#å¯¹è§’çº¿å…ƒç´ 
+print(matrix.diagonal())
+
+#çŸ©é˜µçš„è¿¹--æ–¹é˜µå¯¹è§’çº¿å…ƒç´ å’Œ
+print(matrix.trace())
+
+#ç‚¹ç§¯
+vector_a=np.array([1,2,3])
+vector_b=np.array([4,5,6])
+print(np.dot(vector_a,vector_b))
+
+#çŸ©é˜µåŠ å‡
+matrix_a=np.array([[1,2,3],
+                   [4,5,6],
+                   [7,8,9]])
+matrix_b=np.array([[1,2,3],
+                   [4,5,6],
+                   [7,8,9]])
+print(np.add(matrix_a,matrix_b))
+print(np.subtract(matrix_a,matrix_b))
+
+#çŸ©é˜µä¹˜æ³•
+print(np.dot(matrix_a,matrix_b))
+print(matrix_a@matrix_b)
+#element-wise
+print(matrix_a*matrix_b)
+
+#é€†çŸ©é˜µ
+print(np.linalg.inv(matrix_a))
+matrix_aa=np.mat([[1,4],
+                  [2,5]])
+#ä»¥ä¸‹è¡¨ç¤ºæ³•åªèƒ½ç”¨äºmatæ ¼å¼
+print(matrix_aa.I)
+print(matrix_aa@matrix_aa.I)
+
+#éšæœºçŸ©é˜µ
+print(np.random.random(3))
 A=np.mat('1 2 3;4 5 6;7 8 9')
 B=np.matrix('1 2 3;4 5 6;7 8 9',copy=0)
 C=np.mat(np.arange(9).reshape(3,3))
 print(A,B)
-print(A.T) #×ªÖÃ
-print(A.I)#Äæ¾ØÕó
+print(A.T) #è½¬ç½®
+print(A.I)#é€†çŸ©é˜µ
 print(np.bmat("A C;A C"))
 
 def ultimate_answer(a):
-    result=np.zeros_like(a)#´´½¨Ò»¸öÓëaĞÎ×´ÏàÍ¬£¬Öµ¶¼Îª0µÄÊı×é
+    result=np.zeros_like(a)#åˆ›å»ºä¸€ä¸ªä¸aå½¢çŠ¶ç›¸åŒï¼Œå€¼éƒ½ä¸º0çš„æ•°ç»„
     result.flat=42
     return result
-ufunc=np.frompyfunc(ultimate_answer,1,1)#Ö¸¶¨ÊäÈë²ÎÊıÎª1£¬Êä³ö²ÎÊıÎª1
+ufunc=np.frompyfunc(ultimate_answer,1,1)#æŒ‡å®šè¾“å…¥å‚æ•°ä¸º1ï¼Œè¾“å‡ºå‚æ•°ä¸º1
 print("the answer",ufunc(np.arange(4)))
 print("the answer",ufunc(np.arange(4).reshape(2,2)))
 
-#Í¨ÓÃº¯ÊıÓĞËÄ¸ö·½·¨£¬Ö»¶ÔÊäÈëÁ½¸ö²ÎÊı¡¢Êä³öÒ»¸ö²ÎÊıµÄufunc¶ÔÏóÓĞĞ§
+#é€šç”¨å‡½æ•°æœ‰å››ä¸ªæ–¹æ³•ï¼Œåªå¯¹è¾“å…¥ä¸¤ä¸ªå‚æ•°ã€è¾“å‡ºä¸€ä¸ªå‚æ•°çš„ufuncå¯¹è±¡æœ‰æ•ˆ
 a=np.arange(4)#0 1 2 3
 b=np.arange(4)
 print(np.add(a,b))
 print(np.add.reduce(a))
-print(np.add.accumulate(a))#±£´æÖĞ¼ä½á¹û
-print(np.add.reduceat(a,[0,3,1]))#0-3¹æÔ¼·µ»Ø3 3-1¹æÔ¼·µ»Øa[3] 1-:¹æÔ¼·µ»Ø6
+print(np.add.accumulate(a))#ä¿å­˜ä¸­é—´ç»“æœ
+print(np.add.reduceat(a,[0,3,1]))#0-3è§„çº¦è¿”å›3 3-1è§„çº¦è¿”å›a[3] 1-:è§„çº¦è¿”å›6
 print(np.add.outer(np.arange(2),a))
-print(np.mat('1 2 3;4 5 6').A)#¾ØÕó×ªarray
+print(np.mat('1 2 3;4 5 6').A)#çŸ©é˜µè½¬array
 
-#»ù±¾ÔËËã·û+¡¢-¡¢*ÒşÊ½¹ØÁª×ÅÍ¨ÓÃº¯Êıadd¡¢subtractºÍmultiply¡£
-#³ı·¨°üº¬µÄ¹ı³ÌÔò½ÏÎª¸´ÔÓ£¬ÔÚÊı×éµÄ³ı·¨ÔËËãÖĞÉæ¼°Èı¸öÍ¨ÓÃº¯Êıdivide¡¢true_divideºÍfloor_division£¬ÒÔ¼°Á½¸ö¶ÔÓ¦µÄÔËËã·û/ºÍ//
+#åŸºæœ¬è¿ç®—ç¬¦+ã€-ã€*éšå¼å…³è”ç€é€šç”¨å‡½æ•°addã€subtractå’Œmultiplyã€‚
+#é™¤æ³•åŒ…å«çš„è¿‡ç¨‹åˆ™è¾ƒä¸ºå¤æ‚ï¼Œåœ¨æ•°ç»„çš„é™¤æ³•è¿ç®—ä¸­æ¶‰åŠä¸‰ä¸ªé€šç”¨å‡½æ•°divideã€true_divideå’Œfloor_divisionï¼Œä»¥åŠä¸¤ä¸ªå¯¹åº”çš„è¿ç®—ç¬¦/å’Œ//
 a=np.array([2,6,5])
 b=np.array([1,2,3])
 print("divide",np.divide(a,b),np.divide(b,a))
-print("true divide",np.true_divide(a,b),np.true_divide(b,a))#·µ»Ø¸¡µãÊı½á¹û
-print("floor divide",np.floor_divide(a,b),np.floor_divide(b,a))#·µ»ØÏòÉÏÈ¡Õû
+print("true divide",np.true_divide(a,b),np.true_divide(b,a))#è¿”å›æµ®ç‚¹æ•°ç»“æœ
+print("floor divide",np.floor_divide(a,b),np.floor_divide(b,a))#è¿”å›å‘ä¸Šå–æ•´
 print("/ divide",a/b,b/a)
 print("// divide",a//b,b//a)
 
-#Ä£ÔËËã
+#æ¨¡è¿ç®—
 a=np.arange(-4,4)
-print("% operator",np.remainder(a,2),np.mod(a,2),a%2)#Õı¸ºÈ¡¾öÓÚ³ıÊı
-print("fmod",np.fmod(a,2))#Õı¸ºÈ¡¾öÓÚ±»³ıÊı
+print("% operator",np.remainder(a,2),np.mod(a,2),a%2)#æ­£è´Ÿå–å†³äºé™¤æ•°
+print("fmod",np.fmod(a,2))#æ­£è´Ÿå–å†³äºè¢«é™¤æ•°
 
-#»æÖÆÀòÈøÈçÇúÏß
+#ç»˜åˆ¶è‰è¨å¦‚æ›²çº¿
 from matplotlib.pyplot import plot
 from matplotlib.pyplot import show
 import sys
@@ -51,14 +125,14 @@ y=np.sin(b*t)
 plot(x,y)
 show()
 
-#Íæ×ª¶ş½øÖÆÎ»
+#ç©è½¬äºŒè¿›åˆ¶ä½
 x=np.arange(-9,9)
 y=-x
 print("sign difference?",(x^y)<0)
 print("sign difference?",np.less(np.bitwise_xor(x,y),0))
 print("power of 2?\n",x,"\n",(x&(x-1))==0)
 print("power of 2?\n",x,"\n",np.equal(np.bitwise_and(x,x-1),0))
-#¼ÆËãÓàÊıµÄ¼¼ÇÉÊµ¼ÊÉÏÖ»ÓÃÓÚÄ£Îª2µÄÃİÊıÊ±ÓĞĞ§
-#¶ÔÓÚÈÎºÎÍ¬ºÅµÄÁ½¸öÕûÊı£¬Æämod¶¼Ê¹ÉÌ¾¡¿ÉÄÜĞ¡£»¶ÔÓÚÒìºÅµÄÁ½¸öÕûÊı£¬C/javaÊ¹ÉÌ¾¡¿ÉÄÜ´ó£¬pythonµÈÊ¹ÉÌ¾¡¿ÉÄÜĞ¡
+#è®¡ç®—ä½™æ•°çš„æŠ€å·§å®é™…ä¸Šåªç”¨äºæ¨¡ä¸º2çš„å¹‚æ•°æ—¶æœ‰æ•ˆ
+#å¯¹äºä»»ä½•åŒå·çš„ä¸¤ä¸ªæ•´æ•°ï¼Œå…¶modéƒ½ä½¿å•†å°½å¯èƒ½å°ï¼›å¯¹äºå¼‚å·çš„ä¸¤ä¸ªæ•´æ•°ï¼ŒC/javaä½¿å•†å°½å¯èƒ½å¤§ï¼Œpythonç­‰ä½¿å•†å°½å¯èƒ½å°
 print("modules 4\n",x,"\n",x&(1<<2-1))
 print("modules 4\n",x,"\n",np.bitwise_and(x,np.left_shift(1,2)-1))
