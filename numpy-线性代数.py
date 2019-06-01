@@ -12,7 +12,7 @@ print("check",np.dot(a,x))
 #特征值和特征向量
 a=np.mat("3 -2;1 0")
 #矩阵的秩
-
+#非0的奇异值=矩阵的秩
 print("eigenvalues",np.linalg.eigvals(a))
 eigenvalues,eigenvectors=np.linalg.eig(a)
 print("first",eigenvalues,'\n',"second",eigenvectors)
