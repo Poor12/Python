@@ -1,7 +1,7 @@
-#ÏßĞÔ´úÊı
+#çº¿æ€§ä»£æ•°
 a=np.mat("0 1 2;1 0 3;4 -3 8")
 print(np.linalg.inv(a))
-#Çó½âÏßĞÔ·½³Ì×é
+#æ±‚è§£çº¿æ€§æ–¹ç¨‹ç»„
 #b=np.mat([0,8,-9]).T
 b=np.array([0,8,-9])
 print(b)
@@ -9,8 +9,10 @@ x=np.linalg.solve(a,b)
 print("solution",x)
 print("check",np.dot(a,x))
 
-#ÌØÕ÷ÖµºÍÌØÕ÷ÏòÁ¿
+#ç‰¹å¾å€¼å’Œç‰¹å¾å‘é‡
 a=np.mat("3 -2;1 0")
+#çŸ©é˜µçš„ç§©
+
 print("eigenvalues",np.linalg.eigvals(a))
 eigenvalues,eigenvectors=np.linalg.eig(a)
 print("first",eigenvalues,'\n',"second",eigenvectors)
@@ -18,41 +20,41 @@ u,sigma,v=np.linalg.svd(a,full_matrices=0)
 print(u,sigma,v)
 print(u*np.diag(sigma)*v)
 
-#¹ãÒåÄæ¾ØÕó£¬invÖ»½ÓÊÜ·½Õó×÷ÎªÊäÈë£¬pinvÔòÃ»ÓĞÕâ¸öÏŞÖÆ
+#å¹¿ä¹‰é€†çŸ©é˜µï¼Œinvåªæ¥å—æ–¹é˜µä½œä¸ºè¾“å…¥ï¼Œpinvåˆ™æ²¡æœ‰è¿™ä¸ªé™åˆ¶
 a=np.mat("4 11 14;8 7 -2")
 pseudoinv=np.linalg.pinv(a)
 print("pseudo inverse\n",pseudoinv)
 print("check\n",a*pseudoinv)
 
-#ĞĞÁĞÊ½
-#¼ÆËã¾ØÕóµÄĞĞÁĞÊ½
+#è¡Œåˆ—å¼
+#è®¡ç®—çŸ©é˜µçš„è¡Œåˆ—å¼
 a=np.mat([[3,4],[5,6]])
 print("determinant",np.linalg.det(a))
 
-#¿ìËÙ¸µÀïÒ¶±ä»»
-#Ò»ÖÖ¸ßĞ§µÄÀëÉ¢¸µÀïÒ¶Ëã·¨£¬FFTËã·¨±È¸ù¾İÖ±½Ó¼ÆËã¸ü¿ì
+#å¿«é€Ÿå‚…é‡Œå¶å˜æ¢
+#ä¸€ç§é«˜æ•ˆçš„ç¦»æ•£å‚…é‡Œå¶ç®—æ³•ï¼ŒFFTç®—æ³•æ¯”æ ¹æ®ç›´æ¥è®¡ç®—æ›´å¿«
 x=np.linspace(0,2*np.pi,30)
 wave=np.cos(x)
-transformed=np.fft.fft(wave)#¸µÀïÒ¶±ä»»
-print(np.all(np.abs(np.fft.ifft(transformed)-wave)<10**-9))#»¹Ô­ĞÅºÅ
+transformed=np.fft.fft(wave)#å‚…é‡Œå¶å˜æ¢
+print(np.all(np.abs(np.fft.ifft(transformed)-wave)<10**-9))#è¿˜åŸä¿¡å·
 plt.plot(transformed)
 plt.show()
 
-#ÒÆÆµ
+#ç§»é¢‘
 x=np.linspace(0,2*np.pi,30)
 wave=np.cos(x)
 transformed=np.fft.fft(wave)
-shifted=np.fft.fftshift(transformed)#½«Ö±Á÷·ÖÁ¿ÒÆ¶¯µ½ÆµÆ×µÄÖĞ¼ä
-print(np.all(np.fft.ifftshift(shifted)-transformed)<10**-9)#»¹Ô­ĞÅºÅ
+shifted=np.fft.fftshift(transformed)#å°†ç›´æµåˆ†é‡ç§»åŠ¨åˆ°é¢‘è°±çš„ä¸­é—´
+print(np.all(np.fft.ifftshift(shifted)-transformed)<10**-9)#è¿˜åŸä¿¡å·
 plt.plot(transformed,lw=2)
 plt.plot(shifted,lw=3)
 plt.show()
 
-#Ëæ»úÊı
-#¶şÏî·Ö²¼
+#éšæœºæ•°
+#äºŒé¡¹åˆ†å¸ƒ
 cash=np.zeros(10000)
 cash[0]=1000
-outcome=np.random.binomial(9,0.5,size=len(cash))# Å×¾Å´ÎÓ²±Ò£¬p=0.5,10000´ÎÉÏÊö¹ı³Ì
+outcome=np.random.binomial(9,0.5,size=len(cash))# æŠ›ä¹æ¬¡ç¡¬å¸ï¼Œp=0.5,10000æ¬¡ä¸Šè¿°è¿‡ç¨‹
 for i in range(1,len(cash)):
     if outcome[i]<5:
         cash[i]=cash[i-1]-1
@@ -64,11 +66,11 @@ print(outcome.min(),outcome.max())
 plt.plot(np.arange(len(cash)),cash)
 plt.show()
 
-#³¬¼¸ºÎ·Ö²¼--¹Ş×ÓÀïÓĞÁ½ÖÖÎïÆ·£¬ÎŞ·Å»ØµÄ´ÓÖĞ³éÈ¡Ö¸¶¨ÊıÁ¿µÄÎï¼şºó£¬³é³öÖ¸¶¨ÖÖÀàÎï¼şµÄÊıÁ¿
+#è¶…å‡ ä½•åˆ†å¸ƒ--ç½å­é‡Œæœ‰ä¸¤ç§ç‰©å“ï¼Œæ— æ”¾å›çš„ä»ä¸­æŠ½å–æŒ‡å®šæ•°é‡çš„ç‰©ä»¶åï¼ŒæŠ½å‡ºæŒ‡å®šç§ç±»ç‰©ä»¶çš„æ•°é‡
 points=np.zeros(100)
-outcomes=np.random.hypergeometric(25,1,3,size=len(points))#µÚÒ»¸ö²ÎÊıÎª¹ŞÖĞÆÕÍ¨ÇòµÄÊıÁ¿£¬µÚ¶ş¸ö²ÎÊıÎªµ¹Ã¹ÇòµÄÊıÁ¿£¬µÚÈı¸ö²ÎÊıÎªÃ¿´Î²ÉÑùµÄÊıÁ¿
+outcomes=np.random.hypergeometric(25,1,3,size=len(points))#ç¬¬ä¸€ä¸ªå‚æ•°ä¸ºç½ä¸­æ™®é€šçƒçš„æ•°é‡ï¼Œç¬¬äºŒä¸ªå‚æ•°ä¸ºå€’éœ‰çƒçš„æ•°é‡ï¼Œç¬¬ä¸‰ä¸ªå‚æ•°ä¸ºæ¯æ¬¡é‡‡æ ·çš„æ•°é‡
 for i in range(len(points)):
-    if outcomes[i]==3:#ÆÕÍ¨ÇòÊıÁ¿
+    if outcomes[i]==3:#æ™®é€šçƒæ•°é‡
         points[i]=points[i-1]+1
     elif outcomes[i]==2:
         points[i]=points[i-1]-6
@@ -77,6 +79,6 @@ for i in range(len(points)):
 plt.plot(np.arange(len(points)),points)
 plt.show()
 
-#Á¬Ğø·Ö²¼
-#ÕıÌ¬·Ö²¼
-#¶ÔÊıÕıÌ¬·Ö²¼
+#è¿ç»­åˆ†å¸ƒ
+#æ­£æ€åˆ†å¸ƒ
+#å¯¹æ•°æ­£æ€åˆ†å¸ƒ
